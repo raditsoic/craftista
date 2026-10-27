@@ -64,22 +64,6 @@ func GetSystemInfo() SystemInfo {
 	}
 }
 
-func getRecommendationStatus(c *gin.Context) {
-	// Here you would typically check some aspects of your service to determine its status.
-	// If everything's ok, return operational. Otherwise, return a different status.
-	// This is a simple example without real checks, adjust according to your needs.
-
-	// Example checks might include:
-	// - Database connectivity
-	// - External API/service availability
-	// - Disk space, memory usage, etc.
-
-	status := "operational"  // or "down", "maintenance", etc.
-
-	c.JSON(http.StatusOK, gin.H{
-		"status": status,
-	})
-}
 
 
 func renderHomePage(c *gin.Context) {
@@ -115,7 +99,7 @@ func main() {
 	router.GET("/api/origami-of-the-day", api.GetOrigamiOfTheDay)
         
 	// Service Status Page
-        router.GET("/api/recommendation-status", getRecommendationStatus)
+        router.GET("/api/recommendation-status", api.GetRecommendationStatus)
 
 
 	// Start the server on port 8080
